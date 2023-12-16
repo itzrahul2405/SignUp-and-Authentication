@@ -1,5 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import classes from './MainNavigation.module.css';
 import AuthContext from '../../store/auth-context';
 
@@ -12,6 +12,7 @@ const MainNavigation = () => {
     // optional: redirect the user if we want
     history.replace('/auth');
   }
+
 
   return (
     <header className={classes.header}>
