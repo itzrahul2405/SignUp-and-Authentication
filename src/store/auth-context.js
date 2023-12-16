@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 const AuthContext = React.createContext()
 
 export const AuthContextProvider = (props) => {
-    const [token, setToken] = useState(null)
+    const initialToken = localStorage.getItem('token')
+    const [token, setToken] = useState(initialToken)
 
     const userIsLoggedIn = !!token;  
     // The use of two exclamation marks (!!) is a common pattern to convert a value to its boolean equivalent. The first ! negates the truthiness, and the second ! negates that result, effectively converting the value to its boolean representation.
@@ -13,10 +14,12 @@ export const AuthContextProvider = (props) => {
 
     const loginHandler = (token) => {
         setToken(token);
+        localStorage.setItem('token', token);
     }
 
     const logoutHandler = () => {
         setToken(null);
+        localStorage.removeItem('token');
     }
 
     const contextValue = {
